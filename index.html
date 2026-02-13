@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be My Valentine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap"
+            rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+</head>
+<body>
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
-    <main class="app" id="app">
-      <div class="bg-hearts" aria-hidden="true"></div>
+<main class="app" id="app">
+    <div class="bg-hearts" aria-hidden="true"></div>
 
-      <section class="envelope-stage" aria-label="Valentine card opening scene">
+    <section class="envelope-stage" aria-label="Valentine card opening scene">
         <div class="envelope-wrap" id="envelopeWrap">
-          <article class="folded-card" id="foldedCard" aria-live="polite">
-            <div class="panel panel-left">
-              <p class="panel-question" id="questionText">Will you be my valentine?</p>
+            <article class="folded-card" id="foldedCard" aria-live="polite">
+                <div class="panel panel-left">
+                    <p class="panel-question" id="questionText">Will you be my valentine?</p>
 
-              <div class="question-actions" id="questionActions">
-                <button id="yesBtn" class="btn btn-yes" aria-label="Say yes">YES</button>
-                <button id="noBtn" class="btn btn-no" aria-label="Say no">NO</button>
-              </div>
+                    <div class="question-actions" id="questionActions">
+                        <button id="yesBtn" class="btn btn-yes" aria-label="Say yes">YES</button>
+                        <button id="noBtn" class="btn btn-no" aria-label="Say no">NO</button>
+                    </div>
+                </div>
+
+                <div class="panel panel-right" aria-hidden="true">
+                    <div class="doodle-wrap">
+                        <p class="doodle-title">you<br />are<br />my<br />love</p>
+                        <span class="doodle-heart h1">♥</span>
+                        <span class="doodle-heart h2">♥</span>
+                        <span class="doodle-heart h3">♥</span>
+                        <span class="doodle-spark s1"></span>
+                        <span class="doodle-spark s2"></span>
+                        <span class="doodle-spark s3"></span>
+                    </div>
+                </div>
+            </article>
+
+            <div class="envelope-shell" id="envelopeShell" aria-hidden="true">
+                <div class="envelope-flap" id="envelopeFlap"></div>
+                <div class="envelope-body"></div>
             </div>
-
-            <div class="panel panel-right" aria-hidden="true">
-              <div class="doodle-wrap">
-                <p class="doodle-title">you<br />are<br />my<br />love</p>
-                <span class="doodle-heart h1">♥</span>
-                <span class="doodle-heart h2">♥</span>
-                <span class="doodle-heart h3">♥</span>
-                <span class="doodle-spark s1"></span>
-                <span class="doodle-spark s2"></span>
-                <span class="doodle-spark s3"></span>
-              </div>
-            </div>
-          </article>
-
-          <div class="envelope-shell" id="envelopeShell" aria-hidden="true">
-            <div class="envelope-flap" id="envelopeFlap"></div>
-            <div class="envelope-body"></div>
-          </div>
         </div>
 
         <button id="openBtn" class="btn btn-open" aria-label="Open valentine envelope">Open</button>
-      </section>
+    </section>
 
-      <section class="celebration hidden" id="celebration" aria-live="polite">
+    <section class="celebration hidden" id="celebration" aria-live="polite">
         <h1>YAYYYYY 💖 See you on Valentine’s!</h1>
         <p>You just made my whole heart sparkle ✨</p>
         <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
-      </section>
-    </main>
+    </section>
+</main>
 
-    <script src="script.js"></script>
-  </body>
+<script src="script.js"></script>
+</body>
 </html>
