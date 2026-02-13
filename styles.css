@@ -9,8 +9,10 @@
     --white: #ffffff;
     --ink: #5d2d35;
     --shadow-soft: 0 16px 40px rgba(223, 24, 37, 0.15);
+    --shadow-card: 0 12px 34px rgba(102, 41, 54, 0.15);
     --radius-lg: 24px;
     --radius-md: 16px;
+    --ease-sweet: cubic-bezier(0.22, 0.85, 0.25, 1);
 }
 
 * {
@@ -68,7 +70,7 @@ body {
     align-items: center;
     gap: 18px;
     margin-bottom: 4vh;
-    transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s ease;
+    transition: opacity 0.45s var(--ease-sweet), transform 0.45s var(--ease-sweet), visibility 0.45s var(--ease-sweet);
 }
 
 .app.celebrating .envelope-stage {
@@ -94,11 +96,11 @@ body {
     height: min(52vw, 300px);
     max-height: 300px;
     background: var(--white);
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    box-shadow: 0 8px 18px rgba(80, 33, 39, 0.08);
+    box-shadow: 0 10px 22px rgba(80, 33, 39, 0.11);
     z-index: 1;
     opacity: 0;
 }
@@ -107,7 +109,7 @@ body {
     position: relative;
     display: grid;
     place-items: center;
-    padding: clamp(18px, 3vw, 30px);
+    padding: clamp(20px, 3.3vw, 34px);
 }
 
 .panel-left {
@@ -124,7 +126,7 @@ body {
     color: var(--red-500);
     text-align: center;
     margin: 0;
-    transition: font-size 0.35s ease;
+    transition: font-size 0.35s var(--ease-sweet);
 }
 
 .doodle-wrap {
@@ -176,7 +178,7 @@ body {
     opacity: 0;
     pointer-events: none;
     transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
+    transition: opacity 0.35s var(--ease-sweet), transform 0.35s var(--ease-sweet);
 }
 
 .btn {
@@ -187,7 +189,7 @@ body {
     font-weight: 800;
     letter-spacing: 0.03em;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+    transition: transform 0.25s var(--ease-sweet), box-shadow 0.25s var(--ease-sweet), background 0.25s var(--ease-sweet);
     outline: none;
 }
 
@@ -249,11 +251,11 @@ body {
     background: linear-gradient(180deg, #ffd1dd, #ffb8ca);
     clip-path: polygon(0 26%, 50% 58%, 100% 26%, 50% 0);
     transform-origin: 50% 25%;
-    transition: transform 0.7s ease;
+    transition: transform 0.7s var(--ease-sweet);
 }
 
 .envelope-wrap.is-opening .envelope-shell {
-    animation: rise 650ms ease forwards;
+    animation: rise 650ms var(--ease-sweet) forwards;
 }
 
 .envelope-wrap.is-opening .envelope-flap {
@@ -261,7 +263,7 @@ body {
 }
 
 .envelope-wrap.card-sliding .folded-card {
-    animation: slideOut 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: slideOut 900ms var(--ease-sweet) forwards;
 }
 
 .envelope-wrap.card-centered .folded-card {
@@ -275,8 +277,8 @@ body {
     border-radius: var(--radius-lg);
     z-index: 30;
     transform: translate(-50%, -50%) scale(1);
-    transition: width 0.55s ease, height 0.55s ease, border-radius 0.55s ease,
-    transform 0.55s ease;
+    transition: width 0.55s var(--ease-sweet), height 0.55s var(--ease-sweet), border-radius 0.55s var(--ease-sweet),
+    transform 0.55s var(--ease-sweet);
     box-shadow: var(--shadow-soft);
 }
 
@@ -307,17 +309,18 @@ body {
     display: grid;
     place-content: center;
     text-align: center;
-    z-index: 80;
+    z-index: 85;
     background:
-            radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.8), transparent 45%),
-            radial-gradient(circle at 70% 70%, rgba(255, 219, 229, 0.48), transparent 42%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 235, 242, 0.9));
-    backdrop-filter: blur(7px);
+            radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.86), transparent 46%),
+            radial-gradient(circle at 70% 70%, rgba(255, 219, 229, 0.52), transparent 42%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 235, 242, 0.92));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     gap: 10px;
     opacity: 0;
     pointer-events: none;
     transform: scale(0.95);
-    transition: opacity 0.45s ease, transform 0.45s ease;
+    transition: opacity 0.48s var(--ease-sweet), transform 0.48s var(--ease-sweet);
 }
 
 .celebration.is-visible {
@@ -326,17 +329,33 @@ body {
     transform: scale(1);
 }
 
+.celebration-glow {
+    position: absolute;
+    width: min(78vw, 720px);
+    height: min(40vh, 300px);
+    top: 24%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.92), rgba(255, 223, 235, 0.36), transparent 70%);
+    filter: blur(10px);
+    z-index: -1;
+}
+
 .celebration h1 {
     margin: 0;
+    padding: 0 18px;
     font-size: clamp(2rem, 6vw, 4.2rem);
     color: var(--red-500);
-    animation: yayBounce 1.5s ease-in-out infinite;
+    text-wrap: balance;
+    animation: yayBounce 1.55s var(--ease-sweet) infinite;
 }
 
 .celebration p {
     margin: 0;
     color: #a14b5f;
     font-size: clamp(1rem, 2.3vw, 1.3rem);
+    letter-spacing: 0.01em;
 }
 
 .hidden {
@@ -369,8 +388,94 @@ body {
     font-size: var(--heart-size, 18px);
     opacity: 0;
     filter: blur(0.2px);
-    animation: heartBurst var(--heart-duration, 3.8s) ease-out forwards;
+    animation: heartBurst var(--heart-duration, 3.8s) var(--ease-sweet) forwards;
     animation-delay: var(--heart-delay, 0s);
+}
+
+/* Tiny Letter popup styles */
+.tiny-letter {
+    position: fixed;
+    left: 50%;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    transform: translateX(-50%) translateY(28px) scale(0.96);
+    width: min(92vw, 420px);
+    padding: 18px 18px 14px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(255, 239, 245, 0.95));
+    border: 1px solid rgba(255, 196, 212, 0.52);
+    box-shadow: var(--shadow-card);
+    text-align: left;
+    z-index: 86;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-sweet), transform 0.5s var(--ease-sweet), visibility 0.5s var(--ease-sweet);
+}
+
+.tiny-letter.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+    animation: letterBob 2.2s ease-in-out infinite 0.75s;
+}
+
+.tiny-letter h2 {
+    margin: 0 0 10px;
+    color: var(--red-500);
+    font-size: 1.2rem;
+}
+
+.tiny-letter-stamp {
+    position: absolute;
+    top: 12px;
+    right: 40px;
+    font-size: 1.1rem;
+}
+
+.tiny-letter-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 223, 232, 0.8);
+    color: var(--red-500);
+    font-size: 1.15rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.tiny-letter dl {
+    margin: 0;
+    display: grid;
+    gap: 7px;
+}
+
+.tiny-letter dl div {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.tiny-letter dt {
+    font-weight: 700;
+    color: #b9485f;
+}
+
+.tiny-letter dd {
+    margin: 0;
+    color: #62363f;
+}
+
+.tiny-letter-footer {
+    margin: 12px 0 0;
+    color: var(--red-500);
+    font-weight: 700;
+    text-align: center;
 }
 
 @keyframes rise {
@@ -390,12 +495,6 @@ body {
     100% { transform: translateY(0) rotate(0deg); }
 }
 
-@keyframes floatUp {
-    0% { transform: translateY(18px) scale(0.8); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateY(-90px) scale(1.2); opacity: 0; }
-}
-
 @keyframes heartBurst {
     0% { transform: translate3d(0, 0, 0) scale(0.8); opacity: 0; }
     18% { opacity: 0.85; }
@@ -408,6 +507,11 @@ body {
 @keyframes yayBounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
+}
+
+@keyframes letterBob {
+    0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+    50% { transform: translateX(-50%) translateY(-3px) scale(1.01); }
 }
 
 @media (max-width: 680px) {
@@ -426,5 +530,15 @@ body {
     .question-actions {
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .tiny-letter {
+        width: min(94vw, 420px);
+        padding: 16px 14px 12px;
+    }
+
+    .tiny-letter dl div {
+        grid-template-columns: 60px 1fr;
+        gap: 6px;
     }
 }

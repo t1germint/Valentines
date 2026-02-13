@@ -9,6 +9,8 @@ const noBtn = document.getElementById('noBtn');
 const celebration = document.getElementById('celebration');
 const confettiCanvas = document.getElementById('confetti-canvas');
 const floatingHearts = document.getElementById('floatingHearts');
+const tinyLetter = document.getElementById('tinyLetter');
+const tinyLetterClose = document.getElementById('tinyLetterClose');
 
 const noResponses = ['Really?', 'Really really?', 'Are you sure?', 'Think again 🥺', 'Last chance?'];
 
@@ -16,6 +18,7 @@ let isOpening = false;
 let noIndex = 0;
 let yesScale = 1;
 let noNudgeDir = 1;
+let tinyLetterTimer = null;
 
 /**
  * Envelope opening animation sequence.
@@ -71,13 +74,33 @@ function handleNoClick() {
 function triggerCelebration() {
     envelopeWrap.classList.add('finished');
     app.classList.add('celebrating');
+
     celebration.classList.remove('hidden');
-    // ensure celebration styles are not overridden by stale states
     requestAnimationFrame(() => {
         celebration.classList.add('is-visible');
     });
+
     runConfetti(4200);
     seedFloatingHearts(62, 5000);
+
+    // Tiny Letter reveal delay (easy to tweak): 3000ms
+    window.clearTimeout(tinyLetterTimer);
+    tinyLetter.classList.add('hidden');
+    tinyLetter.classList.remove('is-visible');
+
+    tinyLetterTimer = window.setTimeout(() => {
+        tinyLetter.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            tinyLetter.classList.add('is-visible');
+        });
+    }, 3000);
+}
+
+function closeTinyLetter() {
+    tinyLetter.classList.remove('is-visible');
+    window.setTimeout(() => {
+        tinyLetter.classList.add('hidden');
+    }, 260);
 }
 
 function seedFloatingHearts(count = 56, durationMs = 5000) {
@@ -176,9 +199,10 @@ function runConfetti(duration = 4000) {
 openBtn.addEventListener('click', startOpenSequence);
 noBtn.addEventListener('click', handleNoClick);
 yesBtn.addEventListener('click', triggerCelebration);
+tinyLetterClose.addEventListener('click', closeTinyLetter);
 
 // Explicit keyboard support for Enter/Space on action buttons.
-[openBtn, noBtn, yesBtn].forEach((btn) => {
+[openBtn, noBtn, yesBtn, tinyLetterClose].forEach((btn) => {
     btn.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();

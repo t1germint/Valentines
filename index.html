@@ -53,9 +53,31 @@
     </section>
 
     <section class="celebration hidden" id="celebration" aria-live="polite">
+        <div class="celebration-glow" aria-hidden="true"></div>
         <h1>YAYYYYY 💖 See you on Valentine’s!</h1>
         <p>You just made my whole heart sparkle ✨</p>
-        <div class="floating-hearts" id="floatingHearts" aria-hidden="true"></div>
+        <div class="floating-hearts hidden" id="floatingHearts" aria-hidden="true"></div>
+
+        <!-- Tiny Letter popup: revealed a few seconds after celebration starts -->
+        <article class="tiny-letter hidden" id="tinyLetter" aria-live="polite">
+            <button
+                    id="tinyLetterClose"
+                    class="tiny-letter-close"
+                    aria-label="Close tiny note"
+                    type="button"
+            >
+                ×
+            </button>
+            <span class="tiny-letter-stamp" aria-hidden="true">💗</span>
+            <h2>A Tiny Note 💌</h2>
+            <dl>
+                <div><dt>Date:</dt><dd>13 February 2026</dd></div>
+                <div><dt>Time:</dt><dd>12:00 PM</dd></div>
+                <div><dt>Meet:</dt><dd>Maxwell MRT Station</dd></div>
+                <div><dt>Attire:</dt><dd>Blue &amp; Black (no dress)</dd></div>
+            </dl>
+            <p class="tiny-letter-footer">Be ready for the day ✨</p>
+        </article>
     </section>
 </main>
 
